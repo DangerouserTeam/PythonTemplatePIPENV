@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Animations Showcase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .animation-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease-out;
+            transition: transform 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Hover Animation 1: Scale */
+        .animation-container:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hover Animation 2: Rotate */
+        .rotate:hover {
+            transform: rotate(360deg);
+        }
+
+        /* Hover Animation 3: Color Change */
+        .color-change:hover {
+            color: #00ff00;
+        }
+
+        /* Hover Animation 4: Box Shadow */
+        .box-shadow:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hover Animation 5: Border */
+        .border:hover {
+            border: 2px solid #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="animation-container rotate">
+        <h2>1. Поворачует</h2>
+        <p>Когда наведен мышкой оно вертиться.</p>
+    </div>
+
+    <div class="animation-container color-change">
+        <h2>2. Цвет</h2>
+        <p>Меняем цвет текста когда наведен мышкой.</p>
+    </div>
+
+    <div class="animation-container box-shadow">
+        <h2>3. Тень</h2>
+        <p>Появляеться тень когда наведен мышкой.</p>
+    </div>
+
+    <div class="animation-container border">
+        <h2>4. Бордики</h2>
+        <p>Цвет бордиков меняеться когда наведен мышкой.</p>
+    </div>
+</body>
+</html>

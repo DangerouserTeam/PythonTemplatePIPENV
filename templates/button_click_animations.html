@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click Animations Showcase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .custom-button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease-out;
+        }
+
+        /* Button Click Animation 1: Scale */
+        .custom-button.scale:active {
+            transform: scale(0.9);
+        }
+
+        /* Button Click Animation 2: Rotate */
+        .custom-button.rotate:active {
+            transform: rotate(360deg);
+        }
+
+        /* Button Click Animation 3: Color Change */
+        .custom-button.color-change:active {
+            background-color: #ffcc00;
+            color: #fff;
+        }
+
+        /* Button Click Animation 4: Border */
+        .custom-button.border:active {
+            border: 2px solid #ff0000;
+        }
+
+        /* Button Click Animation 5: Shadow */
+        .custom-button.shadow:active {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="custom-button scale">Размер</button>
+        <button class="custom-button rotate">Поворот</button>
+        <button class="custom-button color-change">Изменить цвет</button>
+        <button class="custom-button border">Бордики</button>
+        <button class="custom-button shadow">Тень</button>
+    </div>
+</body>
+</html>

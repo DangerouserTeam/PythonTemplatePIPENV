@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>буум!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .disco-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #disco-ball {
+            width: 100px;
+            height: 100px;
+            background-color: #ff00ff;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            animation: discoRotate 2s linear infinite;
+        }
+
+        @keyframes discoRotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #disco-light {
+            width: 20px;
+            height: 20px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            position: absolute;
+            animation: discoLight 1s linear infinite;
+        }
+
+        @keyframes discoLight {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(50px);
+            }
+        }
+
+        #music-player {
+            margin-top: 20px;
+        }
+
+        .disco-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #ff00ff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-out, background-color 0.3s ease-out;
+        }
+
+        .disco-button:hover {
+            transform: scale(1.1);
+            background-color: #ff99ff;
+        }
+    </style>
+    <script>
+        let isPlaying = false;
+        let audio = new Audio('static/disco_music.mp3'); // Замените 'static/disco_music.mp3' на ваш файл музыки
+
+        function toggleDisco() {
+            isPlaying = !isPlaying;
+
+            if (isPlaying) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="disco-container">
+        <div id="disco-ball"></div>
+        <div id="disco-light"></div>
+        <button class="disco-button" onclick="toggleDisco()">подарок</button>
+        <audio id="music-player" loop>
+            <source src="static/disco_music.mp3" type="audio/mpeg"> <!-- Замените 'static/disco_music.mp3' на ваш файл музыки -->
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+</body>
+</html>

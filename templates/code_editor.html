@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Online Editor</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #editor-container {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            height: 100%;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: hidden;
+            transition: width 0.3s;
+        }
+
+        #editor {
+            flex: 1;
+            background-color: #34495e;
+            border: 2px solid #2c3e50;
+            border-radius: 5px;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            transition: background-color 0.3s;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            background-color: #34495e;
+            color: #ecf0f1;
+            border: none;
+            resize: none;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #result-container {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            height: 100%;
+            background-color: #34495e;
+            color: #ecf0f1;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            transition: width 0.3s;
+        }
+
+        #result {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            #editor-container, #result-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="editor-container">
+        <div id="editor">
+            <textarea name="code" id="code">{{ code }}</textarea>
+            <button onclick="runCode()">Run Code</button>
+        </div>
+    </div>
+    <div id="result-container">
+        <div id="result">
+            <pre>{{ result }}</pre>
+        </div>
+    </div>
+    <script>
+        function runCode() {
+            var code = document.getElementById('code').value;
+            fetch('/code', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'code=' + encodeURIComponent(code),
+            })
+            .then(response => response.text())
+            .then(result => {
+                document.getElementById('result').innerHTML = '<pre>' + result + '</pre>';
+            });
+        }
+    </script>
+</body>
+</html>

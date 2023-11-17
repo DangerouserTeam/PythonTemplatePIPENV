@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falling Texts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        #text-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .falling-text {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fall 2s ease-out forwards, spin 2s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(200px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var textContainer = document.getElementById('text-container');
+            var input = document.querySelector('input');
+
+            input.addEventListener('input', function () {
+                var text = getRandomText();
+                var fallingText = document.createElement('div');
+                fallingText.className = 'falling-text';
+                fallingText.textContent = text;
+                setRandomPosition(fallingText);
+                textContainer.appendChild(fallingText);
+
+                // Удаляем элемент после завершения анимации
+                fallingText.addEventListener('animationend', function () {
+                    textContainer.removeChild(fallingText);
+                });
+            });
+
+            function setRandomPosition(element) {
+                var randomX = Math.floor(Math.random() * window.innerWidth);
+                element.style.left = randomX + 'px';
+            }
+
+            function getRandomText() {
+                var texts = [
+                    "Привет для Учителя Богдана!",
+                    "Иди пиши!",
+                    "Мама я летаю!!!",
+                    "Сынок удачи!!!",
+                    "Привет писатель!",
+                    "Урааа!",
+                    "КуКу!",
+                    "Дизайн!",
+                    "Пиши дальше!",
+                    "Пиши!",
+                    "Давай!"
+                ];
+                var randomIndex = Math.floor(Math.random() * texts.length);
+                return texts[randomIndex];
+            }
+        });
+    </script>
+</head>
+<body>
+    <input type="text" placeholder="Пиши тут">
+    <div id="text-container"></div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #3498db;
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .website-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            transition: transform 0.3s ease-out, background-color 0.3s ease-out;
+        }
+
+        .website-button:hover {
+            transform: scale(1.1);
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Дом. Здесь вы можете выбрать ВСЕ кнопки!</h1>
+        <div class="buttons-container">
+            <a href="/coinflip" class="website-button">Брось монетку</a>
+            <a href="/password" class="website-button">Генератор пароля</a>
+            <a href="/random_image" class="website-button">Случайное 3 изображения</a>
+            <a href="/random_text_letters" class="website-button">Случайный писательный текст</a>
+            <a href="/random_text" class="website-button">Случайный текст</a>
+            <a href="/animations" class="website-button">Анимации</a>
+            <a href="/text_animations" class="website-button">Анимации текста</a>
+            <a href="/button_click_animations" class="website-button">Анимации нажатии кнопок</a>
+            <a href="/interactive_objects" class="website-button">Обьекты</a>
+            <a href="/disco" class="website-button">Диско</a>
+            <a href="/slider" class="website-button">Письмо</a>
+            <a href="/hover_animations" class="website-button">Наведенные Анимации</a>
+            <a href="/code" class="website-button">Код (В РАЗРАБОТКЕ)</a>
+            <a href="/audio_equalizer" class="website-button">Аудио Еквалайзер (В РАЗРАБОТКЕ)</a>
+            <a href="/" class="website-button">Главная страница</a>
+        </div>
+    </div>
+</body>
+</html>

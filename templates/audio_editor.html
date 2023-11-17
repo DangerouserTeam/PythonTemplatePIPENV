@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аудио Еквалайзер</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif; /* Added Montserrat font */
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000; /* Black background color */
+            color: #fff; /* White text color */
+        }
+
+        h1 {
+            color: #db3434;
+            font-size: 40px;
+            margin-bottom: 20px;
+            font-family: 'Pacifico', cursive; /* Added Pacifico font */
+        }
+
+        input[type="file"] {
+            margin-top: 20px;
+        }
+
+        canvas {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        #visualization-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif; /* Added Roboto font */
+        }
+
+        button:hover {
+            background-color: #b92929;
+        }
+
+        #startAudioButton {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        #stopAudioButton {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        #toggleVisualizationButton {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        #loopAudioButton {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        #statusText {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Audio Equalizer</h1>
+    <input type="file" id="audioFile" accept="audio/*">
+    <button id="startAudioButton" onclick="startAudio()">Start Audio</button>
+    <button id="stopAudioButton" onclick="stopAudio()">Stop Music</button>
+    <button id="toggleVisualizationButton" onclick="toggleVisualization()">Toggle Visualization</button>
+    <button id="loopAudioButton" onclick="loopAudio()">Loop Music</button>
+    <canvas id="equalizerCanvas"></canvas>
+
+    <p id="statusText">Как использовать: Первое нажмите Toggle Visualization, второе выберите музыку, третье нажмите Start Audio. НЕ НАЖИМАЙТЕ Toggle Visualization КОГДА УЖЕ АКТИВИРОВАЛИ!</p> <!-- Add a paragraph for displaying text -->
+
+    <script>
+        var audioContext;
+        var analyser;
+        var dataArray;
+        var audioPlayer;
+        var isVisualizationVisible = false;
+        var isLooping = false;
+        var canvas;
+        var ctx;
+
+        function initializeAudio() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioContext.createAnalyser();
+            analyser.fftSize = 256;
+            dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+            audioPlayer = document.createElement('audio');
+            audioPlayer.addEventListener('ended', function () {
+                if (isLooping) {
+                    audioPlayer.currentTime = 0;
+                    audioPlayer.play();
+                }
+            });
+            var audioSource = audioContext.createMediaElementSource(audioPlayer);
+            audioSource.connect(analyser);
+            analyser.connect(audioContext.destination);
+
+            canvas = document.getElementById('equalizerCanvas');
+            ctx = canvas.getContext('2d');
+        }
+
+        document.getElementById('audioFile').addEventListener('change', function(event) {
+            initializeAudio();
+            audioPlayer.src = URL.createObjectURL(event.target.files[0]);
+        });
+
+        function draw() {
+            analyser.getByteFrequencyData(dataArray);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var barWidth = (canvas.width / dataArray.length) * 2.5;
+            var barHeight;
+            var x = 0;
+
+            for (var i = 0; i < dataArray.length; i++) {
+                barHeight = dataArray[i] / 2;
+
+                ctx.fillStyle = 'rgb(' + (barHeight + 100) + ',50,50)';
+                ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+                x += barWidth + 1;
+            }
+
+            if (isVisualizationVisible) {
+                requestAnimationFrame(draw);
+            }
+        }
+
+        function toggleVisualization() {
+            isVisualizationVisible = !isVisualizationVisible;
+            var visualizationContainer = document.getElementById('visualization-container');
+            visualizationContainer.style.display = isVisualizationVisible ? 'block' : 'none';
+
+            if (isVisualizationVisible) {
+                draw();
+            }
+        }
+
+        function startAudio() {
+            initializeAudio();
+            
+            var fileInput = document.getElementById('audioFile');
+            var selectedFile = fileInput.files[0];
+
+            if (selectedFile) {
+                audioPlayer.src = URL.createObjectURL(selectedFile);
+                audioPlayer.play();
+                draw(); // Start visualization
+            } else {
+                alert('Выберите аудиофайл');
+            }
+        }
+
+        function stopAudio() {
+            if (audioPlayer) {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+            }
+        }
+
+        function loopAudio() {
+            isLooping = !isLooping;
+            var loopButton = document.getElementById('loopAudioButton');
+            loopButton.style.backgroundColor = isLooping ? '#2ecc71' : '#e74c3c';
+        }
+    </script>
+</body>
+</html>

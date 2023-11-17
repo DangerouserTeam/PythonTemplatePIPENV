@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Text Letters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+
+        .random-text-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            overflow: hidden;
+        }
+
+        #random-text {
+            font-size: 24px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #000;
+            animation: typing 1s steps(30, end), blink-caret 0.5s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            from,
+            to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="random-text-container">
+        <h1>Случайный Текст:</h1>
+        <p id="random-text">{{ random_text }}</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animations которые я не знаю</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #2f2f2f;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .fadeIn {
+            animation: fadeIn 2s ease-out;
+        }
+
+        .slideIn {
+            animation: slideIn 2s ease-out;
+        }
+
+        .rotate {
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Анимации которые не знаю</h1>
+    </div>
+
+    <div class="container fadeIn">
+        <h2>Эффект появления (fadeIn)</h2>
+        <p>Этот текст появляется с анимацией fadeIn. чота там нафреймил я там...</p>
+    </div>
+
+    <div class="container slideIn">
+        <h2>Эффект скольжения (slideIn)</h2>
+        <p>Этот текст скользит с анимацией slideIn. скольская штука!!!</p>
+    </div>
+
+    <div class="container rotate">
+        <h2>Эффект вращения (rotate)</h2>
+        <p>Этот текст вращается с анимацией rotate. АААААААА Я ПЬЯНЫЫЫЙЙ</p>
+    </div>
+
+    <!-- Add more animations or content as needed -->
+
+</body>
+</html>

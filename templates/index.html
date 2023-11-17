@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная Страница</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #3498db;
+        }
+
+        .blocks {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .block {
+            width: 100px;
+            height: 100px;
+            background-color: #e74c3c;
+            margin: 0 10px;
+            border-radius: 10px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            to {
+                transform: translateY(-20px);
+            }
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        .navigation-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition: transform 0.3s ease-out, background-color 0.3s ease-out;
+        }
+
+        .navigation-button:hover {
+            transform: scale(1.1);
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Добро пожаловать! Выберите из этих кнопок:</h1>
+        <div class="blocks">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+        <div class="button-container">
+            <a href="/home" class="navigation-button">Дом</a>
+            <a href="/about" class="navigation-button">Про сайт</a>
+        </div>
+    </div>
+</body>
+</html>

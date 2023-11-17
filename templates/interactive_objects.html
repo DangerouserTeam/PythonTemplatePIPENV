@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Objects Showcase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .interactive-button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease-out;
+        }
+
+        /* Interactive Button Click Animation: Scale */
+        .interactive-button:active {
+            transform: scale(0.9);
+        }
+
+        .progress-bar-container {
+            margin: 20px;
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #3498db;
+            transition: width 0.3s ease-out;
+        }
+
+        .volume-slider {
+            margin-top: 20px;
+            width: 200px;
+        }
+
+        .text-input {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const progressBar = document.getElementById('progress-bar');
+            const volumeSlider = document.getElementById('volume-slider');
+            const textInput = document.getElementById('text-input');
+
+            // Initial values for demonstration
+            progressBar.value = 50;
+            volumeSlider.value = 50;
+            textInput.value = 'Hello, World!';
+        });
+    </script>
+</head>
+<body>
+    <div class="button-container">
+        <button class="interactive-button">Просто</button>
+        <button class="interactive-button">Не</button>
+        <button class="interactive-button">Нажимай</button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <label for="progress-bar">Мой скилл (сколько мне не хватает):</label>
+        <div class="progress-bar">
+            <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+    </div>
+
+    <!-- Volume Slider -->
+    <div class="volume-slider-container">
+        <label for="volume-slider">штука громкости:</label>
+        <input type="range" id="volume-slider" class="volume-slider" min="0" max="100">
+    </div>
+
+    <!-- Text Input -->
+    <div class="text-input-container">
+        <label for="text-input">пиши что то:</label>
+        <input type="text" id="text-input" class="text-input">
+    </div>
+</body>
+</html>
